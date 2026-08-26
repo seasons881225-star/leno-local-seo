@@ -1,0 +1,166 @@
+/* ===== 레노베이 디자인 토큰 =====
+   로프접근(고소작업) 방수·실리콘 시공 전문업체 아이덴티티
+   - ink   : 현장 안전모/장비의 무게감 있는 다크 네이비
+   - signal: 작업자 안전모 색(옐로)에서 가져온 시그널 컬러 → CTA, 강조에만 사용
+   - steel : 건물 외벽/새시 톤의 중간 그레이블루
+*/
+:root {
+  --ink: #0b1220;
+  --ink-soft: #1b2536;
+  --steel: #3b4a5a;
+  --steel-soft: #64748b;
+  --paper: #f6f7f9;
+  --paper-line: #e4e7eb;
+  --white: #ffffff;
+  --signal: #ffc53d;
+  --signal-deep: #e0a415;
+
+  --font-display: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius: 14px;
+  --max-width: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--steel-soft);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  display: inline-block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15.5px;
+  padding: 15px 26px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(11, 18, 32, 0.25);
+}
+
+.btn-signal {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.btn-signal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 197, 61, 0.35);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--paper-line);
+}
+
+@media (max-width: 640px) {
+  .stat-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .blog-authority {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+  .blog-authority > a {
+    justify-self: center;
+  }
+  .header-nav-link {
+    display: none !important;
+  }
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .process-row {
+    flex-direction: column !important;
+  }
+  .process-line {
+    display: none !important;
+  }
+  .cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .cases-grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .snapshot-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
