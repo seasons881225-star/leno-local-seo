@@ -18,6 +18,23 @@ function hashPick(str, arr) {
   return arr[sum % arr.length];
 }
 
+// 지역명은 길이가 긴 것부터 확인해야 "역곡동"이 "역곡1동"을 잘못 가로채지 않습니다.
+const REGIONS_BY_LENGTH = [...REGIONS].sort((a, b) => b.length - a.length);
+
+// "선부동창틀누수"처럼 하이픈 없이 들어와도, 앞부분이 지역명이고 뒷부분이
+// 서비스명인 조합을 찾아냅니다.
+function matchWithoutDash(slug) {
+  for (const region of REGIONS_BY_LENGTH) {
+    if (slug.startsWith(region)) {
+      const rest = slug.slice(region.length);
+      if (SERVICES[rest]) {
+        return { region, serviceKey: rest };
+      }
+    }
+  }
+  return null;
+}
+
 export async function getStaticPaths() {
   const paths = [];
   for (const region of REGIONS) {
@@ -31,12 +48,32 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const slug = params.slug || "";
   const dashIndex = slug.indexOf("-");
-  if (dashIndex === -1) return { notFound: true };
 
-  const region = slug.slice(0, dashIndex);
-  const serviceKey = slug.slice(dashIndex + 1);
+  let region = null;
+  let serviceKey = null;
 
-  if (!REGIONS.includes(region) || !SERVICES[serviceKey]) {
+  if (dashIndex !== -1) {
+    const r = slug.slice(0, dashIndex);
+    const s = slug.slice(dashIndex + 1);
+    if (REGIONS.includes(r) && SERVICES[s]) {
+      region = r;
+      serviceKey = s;
+    }
+  }
+
+  // 하이픈 조합으로 못 찾았다면, 하이픈 없는 형태(예: 선부동창틀누수)로도 시도합니다.
+  if (!region) {
+    const matched = matchWithoutDash(slug);
+    if (matched) {
+      // 정식 주소(하이픈 있는 형태)로 영구 이동시켜서 페이지가 두 개로
+      // 나뉘어 보이지 않게 합니다 (검색엔진 중복 콘텐츠 방지).
+      return {
+        redirect: {
+          destination: encodeURI(`/${matched.region}-${matched.serviceKey}`),
+          permanent: true,
+        },
+      };
+    }
     return { notFound: true };
   }
 
