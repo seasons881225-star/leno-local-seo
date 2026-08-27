@@ -21,6 +21,7 @@ export default function BrandPhotoSection({ src = "/images/brand/bottom-photo.jp
           maxWidth: 920,
           position: "relative",
           aspectRatio: "16 / 9",
+          overflow: "hidden",
         }}
       >
         {/* 배경: 같은 사진을 크게 확대 + 강하게 블러 처리 */}
