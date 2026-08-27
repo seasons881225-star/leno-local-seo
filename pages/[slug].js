@@ -11,6 +11,7 @@ import ProcessSection from "../components/ProcessSection";
 import CasesSection from "../components/CasesSection";
 import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import FinalCtaSection from "../components/FinalCtaSection";
+import BrandPhotoSection from "../components/BrandPhotoSection";
 
 function hashPick(str, arr) {
   let sum = 0;
@@ -46,7 +47,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const slug = params.slug || "";
+  // 주소에 띄어쓰기가 들어와도(예: 철산동%20창틀누수) 무시하고 처리합니다.
+  const slug = (params.slug || "").replace(/\s+/g, "");
   const dashIndex = slug.indexOf("-");
 
   let region = null;
@@ -211,6 +213,9 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
 
       {/* ===== PRINCIPLES ===== */}
       <CardGridSection data={principles} columns={4} />
+
+      {/* ===== 하단 브랜드 사진 ===== */}
+      <BrandPhotoSection />
 
       {/* ===== 최종 CTA ===== */}
       <FinalCtaSection />

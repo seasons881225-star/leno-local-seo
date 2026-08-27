@@ -11,6 +11,7 @@ import CasesSection from "../components/CasesSection";
 import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import BadExamplesSection from "../components/BadExamplesSection";
 import FinalCtaSection from "../components/FinalCtaSection";
+import BrandPhotoSection from "../components/BrandPhotoSection";
 
 export default function Home() {
   const { hero, video, trust, principles } = SITE;
@@ -142,6 +143,9 @@ export default function Home() {
 
       {/* ===== PRINCIPLES ===== */}
       <CardGridSection data={principles} columns={4} />
+
+      {/* ===== 하단 브랜드 사진 ===== */}
+      <BrandPhotoSection />
 
       {/* ===== 최종 CTA ===== */}
       <FinalCtaSection />

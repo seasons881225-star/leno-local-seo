@@ -128,6 +128,7 @@ export const SITE = {
       { image: "/images/cases/9.jpg", title: "발전소 외벽 크랙 보수", postUrl: "" },
       { image: "/images/cases/10.jpg", title: "포사이드창 코킹공사", postUrl: "" },
       { image: "/images/cases/11.jpg", title: "중앙대 기숙사 석재코킹 공사", postUrl: "" },
+      { image: "/images/cases/12.jpg", title: "아파트 크랙보수 후 외벽방수도장", postUrl: "" },
     ],
   },
 
@@ -139,6 +140,8 @@ export const SITE = {
     pairs: [
       { before: "/images/before-after/1-before.jpg", after: "/images/before-after/1-after.jpg" },
       { before: "/images/before-after/2-before.jpg", after: "/images/before-after/2-after.jpg" },
+      { before: "/images/before-after/3-before.jpg", after: "/images/before-after/3-after.jpg" },
+      { before: "/images/before-after/4-before.jpg", after: "/images/before-after/4-after.jpg" },
     ],
   },
 
@@ -148,7 +151,7 @@ export const SITE = {
     title: "잘못된 시공 사례",
     description: "밑작업 없이 덧방만 한 시공은 얼마 못 가 같은 문제가 반복됩니다.",
     // 이미지 자체에 설명 문구가 포함되어 있습니다.
-    images: ["/images/bad-examples/1.jpg", "/images/bad-examples/2.jpg"],
+    images: ["/images/bad-examples/1.jpg", "/images/bad-examples/2.jpg", "/images/bad-examples/3.jpg", "/images/bad-examples/4.jpg"],
   },
 
   // ===== PRINCIPLES: 약속 4개 =====

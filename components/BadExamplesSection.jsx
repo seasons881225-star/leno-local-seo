@@ -17,9 +17,9 @@ export default function BadExamplesSection() {
           className="card-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: `repeat(${images.length}, 1fr)`,
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: 18,
-            maxWidth: 640,
+            maxWidth: 760,
           }}
         >
           {images.map((src, i) => (
