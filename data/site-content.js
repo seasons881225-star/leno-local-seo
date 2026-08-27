@@ -7,7 +7,7 @@ export const SITE = {
   phone: "010-5619-1119",
 
   // 카카오톡 채팅 링크 (오픈채팅 또는 카카오톡 채널 링크 주소)
-  kakaoUrl: "여기에 카카오톡 채팅(오픈채팅/채널) 링크를 입력하세요",
+  kakaoUrl: "https://open.kakao.com/o/sSG1p7Cc",
 
   // 유튜브 채널 주소 (헤더/푸터의 '유튜브' 버튼이 연결되는 곳)
   youtubeUrl: "https://youtube.com/channel/UC5LKKjfKi91kHjuTrvo6WwA",
@@ -19,6 +19,7 @@ export const SITE = {
   brandName: "레노베이",
 
   // ===== 상단 헤더 네비게이션 =====
+  // "블로그" 메뉴는 여기 href를 바꿔도 소용없고, 위쪽 blogUrl 값이 그대로 연결됩니다.
   nav: [
     { label: "블로그", href: "#blog" },
     { label: "시공 사례", href: "#cases" },
@@ -188,7 +189,7 @@ export const SITE = {
   },
 
   // ===== 사이트 도메인 (실제 도메인 연결 후 여기만 바꾸면 sitemap.xml에 자동 반영) =====
-  domain: "https://sinbiroo.co.kr",
+  domain: "https://www.renobay.co.kr",
 
   // ===== 푸터: 사업자 정보 =====
   business: {

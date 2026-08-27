@@ -5,7 +5,11 @@ import { SITE } from "../data/site-content";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BuildingVisual from "../components/BuildingVisual";
+import StatStrip from "../components/StatStrip";
+import CardGridSection from "../components/CardGridSection";
 import ProcessSection from "../components/ProcessSection";
+import CasesSection from "../components/CasesSection";
+import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import FinalCtaSection from "../components/FinalCtaSection";
 
 function hashPick(str, arr) {
@@ -49,6 +53,7 @@ export async function getStaticProps({ params }) {
 
 export default function LocalLandingPage({ region, serviceLabel, heading, intro, bullets }) {
   const metaDescription = `${region} ${serviceLabel}. ${intro}`;
+  const { trust, principles } = SITE;
 
   return (
     <>
@@ -148,7 +153,29 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
         </div>
       </section>
 
+      {/* ===== 신뢰도 스탯바 ===== */}
+      <section style={{ padding: "8px 0 40px" }}>
+        <div className="container">
+          <StatStrip />
+        </div>
+      </section>
+
+      {/* ===== TRUST ===== */}
+      <CardGridSection data={trust} columns={3} />
+
+      {/* ===== PROCESS ===== */}
       <ProcessSection />
+
+      {/* ===== CASES ===== */}
+      <CasesSection />
+
+      {/* ===== 아파트 창틀 코킹 전/후 비교 ===== */}
+      <BeforeAfterGallery />
+
+      {/* ===== PRINCIPLES ===== */}
+      <CardGridSection data={principles} columns={4} />
+
+      {/* ===== 최종 CTA ===== */}
       <FinalCtaSection />
       <Footer />
     </>

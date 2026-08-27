@@ -44,21 +44,29 @@ export default function Header() {
             gap: 26,
           }}
         >
-          {SITE.nav.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="header-nav-link"
-              style={{
-                fontSize: 14.5,
-                fontWeight: 600,
-                textDecoration: "none",
-                color: "var(--steel)",
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
+          {SITE.nav.map((item) => {
+            // "블로그" 메뉴는 항상 실제 블로그 주소(SITE.blogUrl)로 연결됩니다.
+            const isBlog = item.label === "블로그";
+            const href = isBlog ? SITE.blogUrl : item.href;
+            const isExternal = href.startsWith("http");
+            return (
+              <a
+                key={item.label}
+                href={href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className="header-nav-link"
+                style={{
+                  fontSize: 14.5,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  color: "var(--steel)",
+                }}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           <a
             href={`tel:${SITE.phone}`}
             className="btn btn-primary"
