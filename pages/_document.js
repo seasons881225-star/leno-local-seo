@@ -4,6 +4,11 @@ export default function Document() {
   return (
     <Html lang="ko">
       <Head>
+        {/* 네이버 서치어드바이저 사이트 소유 확인 */}
+        <meta
+          name="naver-site-verification"
+          content="1825da7ec96de1be9730fe28f37898082c07f558"
+        />
         {/* Pretendard: 한글 웹폰트 (본문/제목 공용) */}
         <link
           rel="stylesheet"
