@@ -47,7 +47,7 @@ export const SITE = {
   video: {
     sectionEyebrow: "현장 영상",
     sectionTitle: "영상으로 먼저 확인하세요",
-    videoId: "GpdvpMPIgdM",
+    videoId: "3idDfE0-dPM",
   },
 
   // ===== 신뢰도 숫자 =====
