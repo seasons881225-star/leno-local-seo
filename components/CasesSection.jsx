@@ -10,8 +10,8 @@ export default function CasesSection() {
     <section id="cases" style={{ padding: "16px 0 48px" }}>
       <div className="container">
         <div className="eyebrow">{eyebrow}</div>
-        <h2 style={{ fontSize: 26, fontWeight: 800, margin: "0 0 8px" }}>{title}</h2>
-        <p style={{ color: "var(--steel)", fontSize: 15, margin: "0 0 26px" }}>{description}</p>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, margin: "0 0 10px" }}>{title}</h2>
+        <p style={{ color: "var(--steel)", fontSize: 15.5, margin: "0 0 26px" }}>{description}</p>
 
         <div
           className="cases-grid-4"
@@ -37,7 +37,7 @@ export default function CasesSection() {
                 style={{ width: "100%", aspectRatio: "4 / 3", objectFit: "cover", display: "block" }}
               />
               <div style={{ padding: "12px 14px" }}>
-                <h3 style={{ fontSize: 13.5, fontWeight: 700, margin: 0, lineHeight: 1.4 }}>
+                <h3 style={{ fontSize: 14, fontWeight: 700, margin: 0, lineHeight: 1.4 }}>
                   {item.title}
                 </h3>
                 {item.postUrl && (

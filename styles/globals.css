@@ -1,9 +1,25 @@
 /* ===== 레노베이 디자인 토큰 =====
-   로프접근(고소작업) 방수·실리콘 시공 전문업체 아이덴티티
-   - ink   : 현장 안전모/장비의 무게감 있는 다크 네이비
-   - signal: 작업자 안전모 색(옐로)에서 가져온 시그널 컬러 → CTA, 강조에만 사용
-   - steel : 건물 외벽/새시 톤의 중간 그레이블루
+   - ink    : 다크 네이비 (헤더/히어로 배경)
+   - accent : 신뢰감 있는 블루 (강조 텍스트, 포인트 컬러)
+   - kakao  : 카카오톡 버튼 전용 (카카오 브랜드 옐로, 이 용도로만 사용)
+   - steel  : 건물 외벽/새시 톤의 중간 그레이블루
 */
+/* Gmarket Sans: 제목/헤드라인 전용 (굵고 각진 산세리프, 눈누 상업용 무료 폰트) */
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --ink: #0b1220;
   --ink-soft: #1b2536;
@@ -12,10 +28,11 @@
   --paper: #f6f7f9;
   --paper-line: #e4e7eb;
   --white: #ffffff;
-  --signal: #ffc53d;
-  --signal-deep: #e0a415;
+  --signal: #2563eb;
+  --signal-deep: #1d4ed8;
+  --kakao-yellow: #fee500;
 
-  --font-display: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-display: "GmarketSans", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -37,6 +54,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   max-width: 100%;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -80,8 +98,8 @@ img {
   align-items: center;
   gap: 8px;
   font-weight: 700;
-  font-size: 15.5px;
-  padding: 15px 26px;
+  font-size: 16.5px;
+  padding: 16px 28px;
   border-radius: 10px;
   text-decoration: none;
   border: none;
@@ -105,13 +123,13 @@ img {
 }
 
 .btn-signal {
-  background: var(--signal);
+  background: var(--kakao-yellow);
   color: var(--ink);
 }
 
 .btn-signal:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(255, 197, 61, 0.35);
+  box-shadow: 0 8px 20px rgba(254, 229, 0, 0.4);
 }
 
 .btn-ghost {

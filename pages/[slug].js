@@ -5,13 +5,15 @@ import { SITE } from "../data/site-content";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BuildingVisual from "../components/BuildingVisual";
-import StatStrip from "../components/StatStrip";
+import AboutSection from "../components/AboutSection";
 import CardGridSection from "../components/CardGridSection";
 import ProcessSection from "../components/ProcessSection";
 import CasesSection from "../components/CasesSection";
 import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import FinalCtaSection from "../components/FinalCtaSection";
 import BrandPhotoSection from "../components/BrandPhotoSection";
+
+const SERVICE_KEYS = Object.keys(SERVICES);
 
 function hashPick(str, arr) {
   let sum = 0;
@@ -47,7 +49,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  // 주소에 띄어쓰기가 들어와도(예: 철산동%20창틀누수) 무시하고 처리합니다.
   const slug = (params.slug || "").replace(/\s+/g, "");
   const dashIndex = slug.indexOf("-");
 
@@ -63,12 +64,9 @@ export async function getStaticProps({ params }) {
     }
   }
 
-  // 하이픈 조합으로 못 찾았다면, 하이픈 없는 형태(예: 선부동창틀누수)로도 시도합니다.
   if (!region) {
     const matched = matchWithoutDash(slug);
     if (matched) {
-      // 정식 주소(하이픈 있는 형태)로 영구 이동시켜서 페이지가 두 개로
-      // 나뉘어 보이지 않게 합니다 (검색엔진 중복 콘텐츠 방지).
       return {
         redirect: {
           destination: encodeURI(`/${matched.region}-${matched.serviceKey}`),
@@ -84,26 +82,79 @@ export async function getStaticProps({ params }) {
   const intro = hashPick(region + "_intro", service.intros)(region);
   const bullets = service.bullets.map((b) => b(region));
 
+  const svcIndex = SERVICE_KEYS.indexOf(serviceKey);
+  const relatedServices = [1, 2, 3, 4].map((offset) => {
+    const key = SERVICE_KEYS[(svcIndex + offset) % SERVICE_KEYS.length];
+    return { key, label: SERVICES[key].label };
+  });
+
+  const regionIndex = REGIONS.indexOf(region);
+  const relatedRegions = [1, 2, 3, 4].map((offset) => {
+    return REGIONS[(regionIndex + offset) % REGIONS.length];
+  });
+
   return {
-    props: { region, serviceLabel: service.label, heading, intro, bullets },
+    props: {
+      region,
+      serviceKey,
+      serviceLabel: service.label,
+      ogImage: service.ogImage || "/images/hero-main.jpg",
+      heading,
+      intro,
+      bullets,
+      relatedServices,
+      relatedRegions,
+    },
     revalidate: 3600,
   };
 }
 
-export default function LocalLandingPage({ region, serviceLabel, heading, intro, bullets }) {
+export default function LocalLandingPage({
+  region,
+  serviceKey,
+  serviceLabel,
+  ogImage,
+  heading,
+  intro,
+  bullets,
+  relatedServices,
+  relatedRegions,
+}) {
   const metaDescription = `${region} ${serviceLabel}. ${intro}`;
   const { trust, principles } = SITE;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: serviceLabel,
+    description: metaDescription,
+    areaServed: { "@type": "Place", name: region },
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE.brandName,
+      telephone: SITE.phone,
+    },
+  };
 
   return (
     <>
       <Head>
         <title>{heading} | {SITE.brandName}</title>
         <meta name="description" content={metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${heading} | ${SITE.brandName}`} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={`${SITE.domain}${ogImage}`} />
+        <meta property="og:url" content={`${SITE.domain}/${region}-${serviceKey}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       </Head>
 
       <Header />
 
-      {/* ===== 히어로 ===== */}
       <section style={{ padding: "56px 0 40px" }}>
         <div
           className="container hero-grid"
@@ -119,7 +170,7 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
             <h1
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(30px, 4vw, 44px)",
+                fontSize: "clamp(34px, 4.5vw, 50px)",
                 fontWeight: 800,
                 letterSpacing: "-0.02em",
                 margin: "0 0 6px",
@@ -140,7 +191,7 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
             </h2>
             <p
               style={{
-                fontSize: 16,
+                fontSize: 16.5,
                 lineHeight: 1.75,
                 color: "var(--steel)",
                 margin: "0 0 28px",
@@ -165,7 +216,7 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
                 <li
                   key={i}
                   style={{
-                    fontSize: 14,
+                    fontSize: 14.5,
                     color: "var(--ink)",
                     display: "flex",
                     gap: 8,
@@ -192,32 +243,65 @@ export default function LocalLandingPage({ region, serviceLabel, heading, intro,
         </div>
       </section>
 
-      {/* ===== 신뢰도 스탯바 ===== */}
+      <AboutSection />
+
+      <CardGridSection data={trust} columns={3} />
+
+      <ProcessSection />
+
+      <CasesSection />
+
+      <BeforeAfterGallery />
+
+      <CardGridSection data={principles} columns={4} />
+
+      <BrandPhotoSection />
+
       <section style={{ padding: "8px 0 40px" }}>
         <div className="container">
-          <StatStrip />
+          <div className="eyebrow">관련 페이지</div>
+          <div
+            className="hero-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
+          >
+            <div>
+              <h3 style={{ fontSize: 15.5, fontWeight: 800, margin: "0 0 12px" }}>
+                {region}의 다른 시공
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {relatedServices.map((s) => (
+                  <li key={s.key} style={{ marginBottom: 8 }}>
+                    <a
+                      href={`/${region}-${s.key}`}
+                      style={{ fontSize: 14, color: "var(--steel)", textDecoration: "none" }}
+                    >
+                      {region} {s.label} →
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 style={{ fontSize: 15.5, fontWeight: 800, margin: "0 0 12px" }}>
+                다른 지역의 {serviceLabel}
+              </h3>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {relatedRegions.map((r) => (
+                  <li key={r} style={{ marginBottom: 8 }}>
+                    <a
+                      href={`/${r}-${serviceKey}`}
+                      style={{ fontSize: 14, color: "var(--steel)", textDecoration: "none" }}
+                    >
+                      {r} {serviceLabel} →
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ===== TRUST ===== */}
-      <CardGridSection data={trust} columns={3} />
-
-      {/* ===== PROCESS ===== */}
-      <ProcessSection />
-
-      {/* ===== CASES ===== */}
-      <CasesSection />
-
-      {/* ===== 아파트 창틀 코킹 전/후 비교 ===== */}
-      <BeforeAfterGallery />
-
-      {/* ===== PRINCIPLES ===== */}
-      <CardGridSection data={principles} columns={4} />
-
-      {/* ===== 하단 브랜드 사진 ===== */}
-      <BrandPhotoSection />
-
-      {/* ===== 최종 CTA ===== */}
       <FinalCtaSection />
       <Footer />
     </>

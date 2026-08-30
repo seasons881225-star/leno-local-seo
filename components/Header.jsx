@@ -24,6 +24,9 @@ export default function Header() {
         <a
           href="/"
           style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
             fontFamily: "var(--font-display)",
             fontWeight: 800,
             fontSize: 19,
@@ -32,6 +35,11 @@ export default function Header() {
             letterSpacing: "-0.02em",
           }}
         >
+          <img
+            src="/images/brand/logo.png"
+            alt={SITE.brandName}
+            style={{ height: 32, width: "auto", display: "block" }}
+          />
           {SITE.brandName}
           <span style={{ color: "var(--signal-deep)" }}>.</span>
         </a>
@@ -70,7 +78,7 @@ export default function Header() {
           <a
             href={`tel:${SITE.phone}`}
             className="btn btn-primary"
-            style={{ fontSize: 14, padding: "10px 18px" }}
+            style={{ fontSize: 14.5, padding: "10px 18px" }}
           >
             무료 상담
           </a>

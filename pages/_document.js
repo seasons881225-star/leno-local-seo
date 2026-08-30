@@ -9,7 +9,7 @@ export default function Document() {
           name="naver-site-verification"
           content="1825da7ec96de1be9730fe28f37898082c07f558"
         />
-        {/* Pretendard: 한글 웹폰트 (본문/제목 공용) */}
+        {/* Pretendard: 한글 웹폰트 (본문 공용) */}
         <link
           rel="stylesheet"
           as="style"

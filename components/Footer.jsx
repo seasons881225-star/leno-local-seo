@@ -57,7 +57,7 @@ export default function Footer() {
         }}
       >
         <div className="container">
-          <div style={{ color: "var(--white)", fontWeight: 800, fontSize: 15, marginBottom: 6 }}>
+          <div style={{ color: "var(--white)", fontWeight: 800, fontSize: 15.5, marginBottom: 6 }}>
             {SITE.brandName}
           </div>
           <p style={{ color: "#8b95a5", fontSize: 12.5, margin: "0 0 14px" }}>
