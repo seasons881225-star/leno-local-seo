@@ -12,6 +12,7 @@ import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import BadExamplesSection from "../components/BadExamplesSection";
 import FinalCtaSection from "../components/FinalCtaSection";
 import BrandPhotoSection from "../components/BrandPhotoSection";
+import StickyContactBar from "../components/StickyContactBar";
 
 const PAGE_TITLE = `${SITE.brandName} | 빗물누수해결 누적시공 3,000건+ | 창틀누수·외벽방수 전문업체`;
 const PAGE_DESC =
@@ -172,6 +173,7 @@ export default function Home() {
       <FinalCtaSection />
 
       <Footer />
+      <StickyContactBar />
     </>
   );
 }

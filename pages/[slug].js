@@ -12,6 +12,7 @@ import CasesSection from "../components/CasesSection";
 import BeforeAfterGallery from "../components/BeforeAfterGallery";
 import FinalCtaSection from "../components/FinalCtaSection";
 import BrandPhotoSection from "../components/BrandPhotoSection";
+import StickyContactBar from "../components/StickyContactBar";
 
 const SERVICE_KEYS = Object.keys(SERVICES);
 
@@ -304,6 +305,7 @@ export default function LocalLandingPage({
 
       <FinalCtaSection />
       <Footer />
+      <StickyContactBar />
     </>
   );
 }

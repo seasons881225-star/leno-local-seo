@@ -47,7 +47,7 @@ export const SITE = {
   video: {
     sectionEyebrow: "현장 영상",
     sectionTitle: "영상으로 먼저 확인하세요",
-    videoId: "3idDfE0-dPM",
+    videoId: "Ko_WLK_E2RA",
   },
 
   // ===== ABOUT: 회사소개 + 신뢰도 숫자 (헬로클린데이 구조 오마주) =====
