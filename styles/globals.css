@@ -184,3 +184,15 @@ img {
     transition: none !important;
   }
 }
+
+/* 빗물누수 피해사례 그리드 반응형 */
+@media (max-width: 1024px) {
+  .damage-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 560px) {
+  .damage-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
