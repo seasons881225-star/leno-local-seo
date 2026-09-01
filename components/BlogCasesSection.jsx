@@ -23,7 +23,7 @@ export const MAIN_PHOTOS = [
   { src: "/images/thumbs/10.jpg", caption: "외벽 방수 시공 현장" },
 ];
 
-export default function BlogCasesSection({ place = "", keyword, title, photos }) {
+export default function BlogCasesSection({ place = "", keyword = "", title, photos }) {
   const PHOTOS = photos || DEFAULT_PHOTOS;
   return (
     <section style={{ padding: "8px 0 44px" }}>
@@ -52,7 +52,7 @@ export default function BlogCasesSection({ place = "", keyword, title, photos })
             <img
               key={i}
               src={p.src}
-              alt={`${place ? place + " " : ""}${keyword} ${p.caption}`}
+              alt={[place, keyword, p.caption].filter(Boolean).join(" ")}
               style={{
                 width: "100%",
                 height: "auto",
