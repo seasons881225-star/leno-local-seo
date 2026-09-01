@@ -11,7 +11,7 @@ export default function CasesSection() {
       <div className="container">
         <div className="eyebrow">{eyebrow}</div>
         <h2 style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 700, margin: "0 0 10px" }}>{title}</h2>
-        <p style={{ color: "var(--steel)", fontSize: 15.5, margin: "0 0 26px" }}>{description}</p>
+        {description ? <p style={{ color: "var(--steel)", margin: "0 0 26px" }}>{description}</p> : null}
 
         <div
           className="cases-grid-4"

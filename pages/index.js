@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { SITE } from "../data/site-content";
+import { CITIES } from "../data/region-meta";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HeroSlider from "../components/HeroSlider";
@@ -9,10 +10,12 @@ import CardGridSection from "../components/CardGridSection";
 import ProcessSection from "../components/ProcessSection";
 import CasesSection from "../components/CasesSection";
 import BeforeAfterGallery from "../components/BeforeAfterGallery";
-import BadExamplesSection from "../components/BadExamplesSection";
 import FinalCtaSection from "../components/FinalCtaSection";
 import BrandPhotoSection from "../components/BrandPhotoSection";
 import StickyContactBar from "../components/StickyContactBar";
+import WhySection from "../components/WhySection";
+import BlogCasesSection, { MAIN_PHOTOS } from "../components/BlogCasesSection";
+import DamageCasesSection from "../components/DamageCasesSection";
 
 const PAGE_TITLE = `${SITE.brandName} | 빗물누수해결 누적시공 3,000건+ | 창틀누수·외벽방수 전문업체`;
 const PAGE_DESC =
@@ -25,11 +28,11 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: SITE.brandName,
-    image: `${SITE.domain}/images/hero-main.jpg`,
+    image: `${SITE.domain}/images/thumbs/9.jpg`,
     telephone: SITE.phone,
     url: SITE.domain,
     description: PAGE_DESC,
-    areaServed: "경기도",
+    areaServed: CITIES.map((c) => ({ "@type": "City", name: c.key })),
   };
 
   return (
@@ -41,7 +44,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={PAGE_TITLE} />
         <meta property="og:description" content={PAGE_DESC} />
-        <meta property="og:image" content={`${SITE.domain}/images/hero-main.jpg`} />
+        <meta property="og:image" content={`${SITE.domain}/images/thumbs/9.jpg`} />
         <meta property="og:url" content={SITE.domain} />
         <meta name="twitter:card" content="summary_large_image" />
         {/* 구조화 데이터 (검색엔진이 업체 정보를 더 명확히 이해하도록) */}
@@ -134,6 +137,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Renobay solution (지역 페이지와 같은 3단 섹션) ===== */}
+      <WhySection keyword="창틀누수" />
+
       {/* ===== ABOUT (경력·신뢰 통합 섹션) ===== */}
       <AboutSection />
 
@@ -154,6 +160,12 @@ export default function Home() {
       {/* ===== PROCESS ===== */}
       <ProcessSection />
 
+      {/* ===== 빗물누수 피해사례 ===== */}
+      <DamageCasesSection />
+
+      {/* ===== 더 많은 시공사례 보기 (블로그 안내) ===== */}
+      <BlogCasesSection title="더 많은 시공사례 보기" photos={MAIN_PHOTOS} />
+
       {/* ===== CASES ===== */}
       <CasesSection />
 
@@ -161,7 +173,6 @@ export default function Home() {
       <BeforeAfterGallery />
 
       {/* ===== 잘못된 시공 사례 ===== */}
-      <BadExamplesSection />
 
       {/* ===== PRINCIPLES ===== */}
       <CardGridSection data={principles} columns={4} />

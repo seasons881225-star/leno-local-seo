@@ -121,8 +121,8 @@ export const SITE = {
   // ===== 시공 사례 =====
   cases: {
     eyebrow: "CASES",
-    title: "시공사례",
-    description: "실제 진행한 현장입니다.",
+    title: "다른 시공 사례",
+    description: "",
     // ⭐ 사례를 추가/수정하려면 이 배열에 항목을 추가/수정하면 됩니다.
     // image는 public/images/cases/ 폴더 안의 파일명과 맞춰주세요.
     // postUrl에 해당 사례의 블로그 포스팅 주소를 넣으면 카드에 "자세히 보기" 링크가 생깁니다.

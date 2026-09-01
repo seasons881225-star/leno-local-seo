@@ -1,7 +1,10 @@
 import { SITE } from "../data/site-content";
 
-export default function FinalCtaSection() {
-  const { title, subtitle, primaryLabel, secondaryLabel } = SITE.finalCta;
+// title / subtitle 을 넘기면 지역 페이지에서 "OO동 창틀누수 상담"처럼 바꿔 쓸 수 있습니다.
+export default function FinalCtaSection({ title: titleProp, subtitle: subtitleProp }) {
+  const { primaryLabel, secondaryLabel } = SITE.finalCta;
+  const title = titleProp || SITE.finalCta.title;
+  const subtitle = subtitleProp || SITE.finalCta.subtitle;
 
   return (
     <section id="contact" style={{ padding: "24px 0 0" }}>

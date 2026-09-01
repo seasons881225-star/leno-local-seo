@@ -1,36 +1,30 @@
-import { REGIONS } from "../data/regions";
-import { SERVICES } from "../data/services";
-import { SITE } from "../data/site-content";
+// ⭐ 사이트맵 "목차" 파일입니다. 실제 주소 목록은 /sitemaps/... 안에 나눠 담겨 있습니다.
+// 이렇게 나눠두면 서치콘솔·서치어드바이저에서 "어떤 서비스가 색인이 안 되는지"를
+// 묶음별로 확인할 수 있습니다. 제출은 이 주소 하나만 하면 됩니다.
+//   https://www.renobay.co.kr/sitemap.xml
 
-// ⭐ 실제 도메인은 data/site-content.js 의 domain 값만 바꾸면 여기 자동 반영됩니다.
-const BASE_URL = SITE.domain;
-
-function generateSitemapXml(urls) {
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map((url) => `  <url><loc>${url}</loc></url>`)
-  .join("\n")}
-</urlset>`;
-}
+import { BASE_URL, getGroupNames } from "../lib/site-urls";
 
 export async function getServerSideProps({ res }) {
-  const urls = [BASE_URL];
-
-  for (const region of REGIONS) {
-    for (const key of Object.keys(SERVICES)) {
-      urls.push(`${BASE_URL}/${region}-${key}`);
-    }
-  }
+  const today = new Date().toISOString().slice(0, 10);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${getGroupNames()
+  .map(
+    (name) =>
+      `  <sitemap><loc>${encodeURI(
+        `${BASE_URL}/sitemaps/${name}.xml`
+      )}</loc><lastmod>${today}</lastmod></sitemap>`
+  )
+  .join("\n")}
+</sitemapindex>`;
 
   res.setHeader("Content-Type", "text/xml");
-  res.write(generateSitemapXml(urls));
+  res.write(xml);
   res.end();
-
   return { props: {} };
 }
 
-export default function SiteMap() {
-  // 실제 화면에는 아무것도 렌더링되지 않고, XML만 응답됩니다.
+export default function SiteMapIndex() {
   return null;
 }

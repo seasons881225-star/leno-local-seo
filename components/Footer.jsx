@@ -7,7 +7,8 @@ const QUICK_LINKS = [
   { emoji: "▶️", label: "유튜브", getHref: () => SITE.youtubeUrl, external: true },
 ];
 
-export default function Footer() {
+// localLine 을 넘기면 푸터 소개문이 지역 문구로 바뀝니다 (지역 페이지용).
+export default function Footer({ localLine }) {
   const { business } = SITE;
 
   return (
@@ -60,8 +61,17 @@ export default function Footer() {
           <div style={{ color: "var(--white)", fontWeight: 800, fontSize: 15.5, marginBottom: 6 }}>
             {SITE.brandName}
           </div>
-          <p style={{ color: "#8b95a5", fontSize: 12.5, margin: "0 0 14px" }}>
-            {SITE.footerTagline}
+          <p style={{ color: "#8b95a5", fontSize: 12.5, margin: "0 0 10px" }}>
+            {localLine || SITE.footerTagline}
+          </p>
+          {/* ⭐ 검색로봇이 지역 페이지로 들어오는 유일한 통로입니다. 지우지 마세요. */}
+          <p style={{ margin: "0 0 14px" }}>
+            <a
+              href="/service-area"
+              style={{ color: "#8b95a5", fontSize: 12.5, textDecoration: "none" }}
+            >
+              서비스 지역
+            </a>
           </p>
           <div style={{ color: "#6b7686", fontSize: 12, lineHeight: 1.9 }}>
             상호: {business.name} &nbsp;·&nbsp; 대표자: {business.ceo} &nbsp;·&nbsp; 사업자등록번호:{" "}
