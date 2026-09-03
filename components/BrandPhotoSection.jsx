@@ -5,7 +5,15 @@
 // 부드러운 페더(feather) 마스크로 얹는 방식입니다. 그래서 사진 가장자리가
 // 배경색으로 뚝 끊기지 않고, 흐릿한 자기 자신 위로 자연스럽게 녹아듭니다.
 
-export default function BrandPhotoSection({ src = "/images/brand/bottom-photo.jpg" }) {
+// alt(사진 설명글)는 네이버가 사진을 이해하는 유일한 단서입니다. 비워두면 안 됩니다.
+export default function BrandPhotoSection({
+  src = "/images/brand/bottom-photo.jpg",
+  place = "",
+  keyword = "",
+}) {
+  const desc = [place, keyword || "빗물누수 보수", "로프 접근 시공 현장 - 레노베이"]
+    .filter(Boolean)
+    .join(" ");
   const featherMask = {
     maskImage:
       "radial-gradient(ellipse 68% 62% at center, black 45%, transparent 92%)",
@@ -27,7 +35,7 @@ export default function BrandPhotoSection({ src = "/images/brand/bottom-photo.jp
         {/* 배경: 같은 사진을 크게 확대 + 강하게 블러 처리 */}
         <img
           src={src}
-          alt=""
+          alt={desc}
           aria-hidden="true"
           style={{
             position: "absolute",
@@ -43,7 +51,7 @@ export default function BrandPhotoSection({ src = "/images/brand/bottom-photo.jp
         {/* 전경: 선명한 사진, 가장자리를 부드럽게 페더 처리 */}
         <img
           src={src}
-          alt="레노베이 현장"
+          alt={desc}
           style={{
             position: "relative",
             width: "100%",

@@ -3,7 +3,7 @@ import { SITE } from "../data/site-content";
 // ⭐ 사례를 추가/수정하려면 data/site-content.js 의 cases.items 배열을 수정하세요.
 // 사진은 public/images/cases/ 폴더에 넣고, 파일명을 items 안의 image 경로와 맞추면 됩니다.
 
-export default function CasesSection() {
+export default function CasesSection({ place = "" }) {
   const { eyebrow, title, description, items } = SITE.cases;
 
   return (
@@ -33,7 +33,7 @@ export default function CasesSection() {
             >
               <img
                 src={item.image}
-                alt={item.title}
+                alt={[place, item.title, "시공 현장 - 레노베이"].filter(Boolean).join(" ")}
                 style={{ width: "100%", aspectRatio: "4 / 3", objectFit: "cover", display: "block" }}
               />
               <div style={{ padding: "12px 14px" }}>

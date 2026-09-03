@@ -178,7 +178,7 @@ export async function getStaticProps({ params }) {
 /* ────────────────────────── 허브 페이지 ────────────────────────── */
 
 function HubPage({ place, services }) {
-  const title = `${place.name} 창틀누수·외벽방수 시공 안내 | ${SITE.brandName}`;
+  const title = `${place.name} 창틀누수·외벽방수 전문업체 | ${SITE.brandName}`;
   const description = `${place.name} 지역에서 가능한 시공 목록입니다. ${place.name} 창틀누수, 외벽누수, 옥상방수, 창틀코킹 등 원하시는 항목을 선택해 자세한 안내를 확인해 보세요.`;
 
   const schema = {
@@ -238,9 +238,29 @@ function HubPage({ place, services }) {
               maxWidth: 640,
             }}
           >
-            {place.name} 지역으로 출장 가능합니다. 아래에서 필요한 항목을 선택하시면{" "}
-            {place.name} 지역 기준의 자세한 시공 안내를 확인하실 수 있습니다.
+            {`${place.name} 지역으로 출장 가능합니다. 아래에서 필요한 항목을 선택하시면 ${place.name} 지역 기준의 자세한 시공 안내를 확인하실 수 있습니다.`}
           </p>
+        </div>
+      </section>
+
+      {/* ⭐ 검색결과 썸네일용 대표 사진.
+          네이버는 og:image 보다 본문의 첫 이미지를 쓰는 경우가 많아서,
+          허브 페이지에도 사진이 한 장은 있어야 검색결과에 썸네일이 붙습니다. */}
+      <section style={{ padding: "0 0 36px" }}>
+        <div className="container">
+          <img
+            src="/images/thumbs/9.jpg"
+            alt={`${place.name} 창틀누수·외벽방수 시공 현장 - 레노베이`}
+            style={{
+              width: "100%",
+              maxWidth: 760,
+              height: "auto",
+              aspectRatio: "16 / 10",
+              objectFit: "cover",
+              borderRadius: 16,
+              display: "block",
+            }}
+          />
         </div>
       </section>
 
@@ -313,6 +333,7 @@ function HubPage({ place, services }) {
 
       <AboutSection />
       <ProcessSection />
+      <BrandPhotoSection place={place.name} keyword="창틀누수" />
 
       <FinalCtaSection
         title={`${place.name} 빗물누수 상담`}
@@ -551,13 +572,13 @@ function LandingPage({
 
       <DamageCasesSection place={region} />
 
-      <CasesSection />
+      <CasesSection place={region} />
 
-      {isWaterproof ? null : <BeforeAfterGallery />}
+      {isWaterproof ? null : <BeforeAfterGallery place={region} />}
 
       <CardGridSection data={principles} columns={4} />
 
-      <BrandPhotoSection />
+      <BrandPhotoSection place={region} keyword={keyword} />
 
       <FinalCtaSection
         title={`${region} ${keyword} 실시간 상담`}

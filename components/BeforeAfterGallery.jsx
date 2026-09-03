@@ -7,7 +7,7 @@ import { SITE } from "../data/site-content";
 // 가운데 손잡이를 마우스(PC) 또는 손가락(모바일)으로 좌우로 끌면 전/후 사진이
 // 갈라져서 비교됩니다.
 
-function DragCompare({ before, after }) {
+function DragCompare({ before, after, label }) {
   const containerRef = useRef(null);
   const [percent, setPercent] = useState(50);
   const dragging = useRef(false);
@@ -58,7 +58,7 @@ function DragCompare({ before, after }) {
       {/* 시공 후 사진 (바닥, 항상 전체 표시) */}
       <img
         src={after}
-        alt="시공 후"
+        alt={`${label} 시공 후`}
         draggable={false}
         style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
       />
@@ -66,7 +66,7 @@ function DragCompare({ before, after }) {
           (컨테이너 픽셀 크기를 몰라도 항상 정확하게 동작합니다) */}
       <img
         src={before}
-        alt="시공 전"
+        alt={`${label} 시공 전`}
         draggable={false}
         style={{
           position: "absolute",
@@ -134,8 +134,9 @@ function badgeStyle(side) {
   };
 }
 
-export default function BeforeAfterGallery() {
+export default function BeforeAfterGallery({ place = "" }) {
   const { eyebrow, title, pairs } = SITE.beforeAfterGallery;
+  const label = [place, "아파트 창틀 코킹"].filter(Boolean).join(" ");
 
   return (
     <section style={{ padding: "16px 0 48px" }}>
@@ -157,7 +158,7 @@ export default function BeforeAfterGallery() {
           }}
         >
           {pairs.map((pair, i) => (
-            <DragCompare key={i} before={pair.before} after={pair.after} />
+            <DragCompare key={i} before={pair.before} after={pair.after} label={label} />
           ))}
         </div>
       </div>
