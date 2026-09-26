@@ -45,9 +45,9 @@ export const SITE = {
   // ===== 유튜브 대표 영상 =====
   // 유튜브 주소가 https://youtube.com/watch?v=ABC123 라면 videoId 는 "ABC123" 만 적으면 됩니다.
   video: {
-    sectionEyebrow: "현장 영상",
+    sectionEyebrow: "시공 영상",
     sectionTitle: "영상으로 먼저 확인하세요",
-    videoId: "Ko_WLK_E2RA",
+    videoId: "hz3sZ8OxEa8",
   },
 
   // ===== ABOUT: 회사소개 + 신뢰도 숫자 (헬로클린데이 구조 오마주) =====
