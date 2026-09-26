@@ -10,7 +10,7 @@ export const SITE = {
   kakaoUrl: "https://open.kakao.com/o/sSG1p7Cc",
 
   // 유튜브 채널 주소 (헤더/푸터의 '유튜브' 버튼이 연결되는 곳)
-  youtubeUrl: "https://youtube.com/channel/UC5LKKjfKi91kHjuTrvo6WwA",
+  youtubeUrl: "https://youtu.be/hz3sZ8OxEa8?si=eowHOJw8kcGBpuhi",
 
   // 블로그 주소
   blogUrl: "https://blog.naver.com/seasons0421",
@@ -29,9 +29,9 @@ export const SITE = {
   // ===== 홈페이지 히어로(맨 위 큰 문구) =====
   hero: {
     eyebrow: "레노베이",
-    headlineLine1: "경력을 속이는 가짜가 판치는 세상",
+    headlineLine1: "비만오면 시작되는 누수",
     headlineHighlight: "진짜 전문가",
-    headlineLine2: "가 시공합니다",
+    headlineLine2: "가 해결해드립니다",
     description:
       "빗물누수 원인 해결은 무작정 시공이 아닌 구조 분석 기반의 정밀 진단으로 이루어져야 합니다. 실경력 14년, 작업블로그 10년째 운영 중인 전문가에게 맡기세요.",
     checklist: [
