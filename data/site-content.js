@@ -10,7 +10,7 @@ export const SITE = {
   kakaoUrl: "https://open.kakao.com/o/sSG1p7Cc",
 
   // 유튜브 채널 주소 (헤더/푸터의 '유튜브' 버튼이 연결되는 곳)
-  youtubeUrl: "https://youtu.be/hz3sZ8OxEa8?si=eowHOJw8kcGBpuhi",
+  youtubeUrl: "https://youtu.be/hz3sZ8OxEa8?si=A7xONebSWjd1OLtr",
 
   // 블로그 주소
   blogUrl: "https://blog.naver.com/seasons0421",
